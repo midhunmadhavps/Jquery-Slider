@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Slide Show</title>
+		<meta charset="utf-8">
+        <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+        <script src="jQ13.js"></script>
+        <link rel="stylesheet" href="jQ13.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>JQSlider</h1>  
+            <div id="slider">
+                <ul class="slides">
+                    <li class="slide"><img src="img1.jfif"></li>
+                    <li class="slide"><img src="img3.jfif"></li>
+                    <li class="slide"><img src="img4.jfif"></li>
+                    <li class="slide"><img src="img5.jfif"></li> 
+                </ul>     
+            </div>      
+        </div>
+    </body>
+</html>
+
+//CSS PART
+
+body{
+    color:#fff;
+    background:#333;
+}
+a{
+    color:#fff;
+    text-decoration: none;
+}
+h1{
+    text-align: center;
+}
+#slider{
+    width:720 px;
+    height:400 px;
+    overflow: hidden;
+}
+#slider .slides{
+    display:block;
+    width: 6000px;
+    height: 400px;
+    margin: 0;
+    padding: 0;
+}
+img{
+    width:100%;
+}
+#slider .slide{
+    float:left;
+    list-style-type: none;
+    width: 1400px;
+    height: 700px; 
+}
+
+//JS PART
+
+$(document).ready(function() {
+    var width = 1400;
+    var animationSpeed = 1000;
+    var pause = 5000;
+    var currentSlide = 1;
+    
+    var $slider = $("#slider"); 
+    var $slideContainer = $slider.find('.slides');
+    var $slides = $slideContainer.find('.slide');
+
+    setInterval(function(){
+        $slideContainer.animate({'margin-left': '-=' +width},animationSpeed, function(){
+            currentSlide++;
+            if(currentSlide == $slides.length){
+                currentSlide = 1;
+                $slideContainer.css('margin-left',0);
+            }
+        });
+    
+   }, pause);
+});
